@@ -1,0 +1,69 @@
+﻿//// Copyright 2014 Michael A. R. Duncan
+//// You are free to do whatever you want with this source
+//// 
+//// File: GalaxyCompute.compute
+//
+//// Each #kernel tells which function to compile; you can have many kernels
+//#pragma kernel UpdateStars
+//
+////#include "Galaxy.cginc"
+//
+//// blackmagic
+//#define BLOCKSIZE	128
+//
+//RWStructuredBuffer<Star> stars;
+//
+//Texture2D HueTexture;
+//
+//// refer to http://forum.unity3d.com/threads/163591-Compute-Shader-SamplerState-confusion
+//SamplerState samplerHueTexture;
+//
+//// time ellapsed since last frame
+//float deltaTime;
+//
+//const float Softening = 3e4f;
+//#define Softening2  Softening * Softening
+//
+//static float G = 6.67300e-11f;
+//static float DefaultMass = 1000000.0f;
+//
+//// Do a pre-calculation assuming all the stars have the same mass
+//static float GMM = G * DefaultMass*DefaultMass;
+//
+//
+//[numthreads(BLOCKSIZE, 1, 1)]
+//void UpdateStars(uint3 id : SV_DispatchThreadID)
+//{
+//	uint i = id.x;
+//	uint numStars, stride;
+//	stars.GetDimensions(numStars, stride);
+//
+//	float3 position = stars[i].position;
+//	float3 velocity = stars[i].velocity;
+//
+//	float3 A = float3(0, 0, 0);
+//
+//	[loop]
+//	for (uint j = 0; j < numStars; j++)
+//	{
+//		if (i != j)
+//		{
+//			float3 D = stars[j].position - stars[i].position;
+//			float r = length(D);
+//			float f = GMM / (r * r + Softening2);
+//			A += f * normalize(D);
+//		}
+//	}
+//
+//	velocity += A * deltaTime;
+//	position += velocity * deltaTime;
+//
+//	if (i < numStars)
+//	{
+//		stars[i].velocity = velocity;
+//		stars[i].position = position;
+//		stars[i].accelMagnitude = length(A);
+//	}
+//
+//
+//}
