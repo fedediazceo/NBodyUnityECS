@@ -153,11 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyPrefab: {fileID: 254003621292389353, guid: e0bb7b3a0a96ffc418a3ce2ec0b9a868,
     type: 3}
-  bodyCount: 10000
+  bodyCount: 100000
   spaceWidth: 20
   spaceHeight: 20
   spaceDepth: 20
-  bodyMass: 1000000
+  bodyMass: 3000000
 --- !u!4 &122983728
 Transform:
   m_ObjectHideFlags: 0
