@@ -27,13 +27,13 @@ public class BodySpawnerSystem : JobComponentSystem {
                             random.NextFloat(-bodySpawner.spaceWidth, bodySpawner.spaceWidth),
                             random.NextFloat(-bodySpawner.spaceWidth, bodySpawner.spaceWidth)));
 
-                var velocity = math.transform(location.Value, new float3(
+                var velocity = new float3(
                     random.NextFloat(-1, 1),
                     random.NextFloat(-1, 1),
-                    random.NextFloat(-1, 1)));
+                    random.NextFloat(-1, 1));
 
                 commandBuffer.SetComponent(instance, new Translation { Value = position });
-                commandBuffer.SetComponent(instance, new Velocity { Value = velocity });
+                commandBuffer.SetComponent(instance, new Velocity { Value = velocity, tempValue = velocity });
                 commandBuffer.SetComponent(instance, new Mass { Value = bodySpawner.bodyMass });
             }
             commandBuffer.DestroyEntity(entity);
